@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ShopifyWebdav::Application.load_tasks
+Shopidav::Application.load_tasks

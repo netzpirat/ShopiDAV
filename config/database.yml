@@ -15,9 +15,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: shopify-webdav_development
+  database: shopidav_development
   pool: 5
-  username: shopify-webdav
+  username: shopidav
   password:
   host: localhost
 
@@ -42,17 +42,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: shopify-webdav_test
+  database: shopidav_test
   pool: 5
-  username: shopify-webdav
+  username: shopidav
   password:
   host: localhost
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: shopify-webdav_production
+  database: shopidav_production
   pool: 5
-  username: shopify-webdav
+  username: shopidav
   password:
   host: localhost
