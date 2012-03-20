@@ -1,4 +1,19 @@
 ShopifyWebdav::Application.routes.draw do
+
+  match 'welcome'            => 'home#welcome'
+
+  match 'design'             => 'home#design'
+
+  match 'login'              => 'login#index',        :as => :login
+
+  match 'login/authenticate' => 'login#authenticate', :as => :authenticate
+
+  match 'login/finalize'     => 'login#finalize',     :as => :finalize
+
+  match 'login/logout'       => 'login#logout',       :as => :logout
+
+  root :to                   => 'home#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

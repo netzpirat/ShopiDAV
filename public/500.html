@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+  <title>500 Error: Something went horribly wrong</title>
+  <link rel="stylesheet" type="text/css" href="../assets/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/responsive-bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/shopify_app.scss" />
+  
+  <style>
+  .container { text-align:center;}
+  .navbar .brand { float:none;}
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="/" class="brand">Shopify Demo App</a>
+      </div>
+    </div>
   </div>
+  
+  <div class="container">
+    <div class="content">
+      
+      <div class="page-header">        
+        <h1>AH! 500 Error!</h1>
+      </div>
+      
+      <h3><i class="icon-warning-sign" style="margin-top:6px; opacity:.5;"></i> We're sorry, but something went wrong.</h3>
+      <p class="muted">The developer of this app has been notified.</p>
+      
+      <p><button type="button" value ="back" onClick="window.history.back();" class='btn btn-primary'><i class="icon-chevron-left" style="opacity:.25"></i> Back to the app</button></p>
+      
+    </div>
+    
+    <footer>
+      <p>A Shopify app by (company name here)</p>
+    </footer>
+  </div> <!-- /container -->
 </body>
 </html>

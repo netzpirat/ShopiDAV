@@ -17,6 +17,11 @@ end
 
 module ShopifyWebdav
   class Application < Rails::Application
+    
+    # Shopify API connection credentials:
+    config.shopify.api_key = "77cb73bd7fe8a6273b41bb0180577fdd"
+    config.shopify.secret = "b2f25049dce339feeb83d50cb8a7f171"
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

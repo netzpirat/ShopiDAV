@@ -10,6 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// If you need to customize any bootstrap js, we've placed the un-minified versions in
+// assets/javascripts/bootstrap including the test suite that ships with bootstrap.
+// Love,
+// Shopify
+//
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
