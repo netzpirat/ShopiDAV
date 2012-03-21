@@ -199,6 +199,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   less-rails-bootstrap
+  mime-types
   pg
   pry
   pry-doc

@@ -1,6 +1,6 @@
 Shopidav::Application.routes.draw do
 
-  constraints(Shopidav::Constraints::Maindomain) do
+  constraints :subdomain => 'www' do
     match 'welcome'            => 'home#welcome'
     match 'design'             => 'home#design'
 
@@ -12,11 +12,11 @@ Shopidav::Application.routes.draw do
     root :to                   => 'home#index'
   end
 
-  constraints(Shopidav::Constraints::Subdomain) do
+  constraints :subdomain => /.+/ do
     mount DAV4Rack::Handler.new({
       :root => '',
       :root_uri_path => '/',
-      :resource_class => ::Resources::Shop
+      :resource_class => ::Shopidav::Resource
     }), :at => '/'
   end
 

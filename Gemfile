@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'shopify_app'
 gem 'dav4rack'
 gem 'haml'
+gem 'mime-types'
 
 group :assets do
   gem 'less-rails'
