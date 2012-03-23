@@ -12,7 +12,7 @@ Shopidav::Application.routes.draw do
     root :to                   => 'home#index'
   end
 
-  constraints :subdomain => /.+/ do
+  constraints :subdomain => /^((?!www).)+$/ do
     mount DAV4Rack::Handler.new({
       :root => '',
       :root_uri_path => '/',
@@ -20,4 +20,5 @@ Shopidav::Application.routes.draw do
     }), :at => '/'
   end
 
+  root to: redirect('http://www.lvh.me:3000')
 end
