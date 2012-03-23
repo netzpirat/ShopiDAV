@@ -12,6 +12,7 @@ gem 'sidekiq'
 gem 'slim'
 gem 'sinatra'
 gem 'unicorn'
+gem 'airbrake'
 
 group :assets do
   gem 'twitter-bootstrap-rails'

@@ -43,6 +43,9 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
+    airbrake (3.0.9)
+      activesupport
+      builder
     arel (3.0.2)
     builder (3.0.0)
     celluloid (0.9.0)
@@ -213,6 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   coffee-rails (~> 3.2.1)
   dav4rack
   fabrication
