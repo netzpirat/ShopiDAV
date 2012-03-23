@@ -1,6 +1,10 @@
+require 'sidekiq/web'
+
 Shopidav::Application.routes.draw do
 
   constraints :subdomain => 'www' do
+    mount Sidekiq::Web => '/admin/sidekiq'
+
     match 'login'              => 'login#index',        :as => :login
     match 'login/authenticate' => 'login#authenticate', :as => :authenticate
     match 'login/finalize'     => 'login#finalize',     :as => :finalize

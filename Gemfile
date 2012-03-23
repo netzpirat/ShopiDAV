@@ -8,6 +8,10 @@ gem 'shopify_app'
 gem 'dav4rack'
 gem 'haml'
 gem 'mime-types'
+gem 'sidekiq'
+gem 'slim'
+gem 'sinatra'
+gem 'unicorn'
 
 group :assets do
   gem 'twitter-bootstrap-rails'
@@ -26,8 +30,8 @@ group :development do
   gem 'rb-fsevent'         , :require => false
   gem 'rake'               , :require => false
   gem 'growl'              , :require => false
-  gem 'thin'               , :require => false
   gem 'yard'               , :require => false
+  gem 'foreman'            , :require => false
 end
 
 group :test, :development do
