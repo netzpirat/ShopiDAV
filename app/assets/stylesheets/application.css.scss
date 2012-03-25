@@ -11,3 +11,46 @@
  *= require_self
  *= require bootstrap_and_overrides
 */
+
+@import 'compass';
+
+body * {
+  font-family: "myriad-pro", sans-serif;
+  font-size: 16px;
+}
+
+.navbar {
+
+  img.brand {
+    padding: 5px;
+  }
+
+  a.brand {
+    padding: 10px 20px;
+  }
+
+  .nav > li > a > i {
+    margin-top: 2px;
+  }
+}
+
+.sidebar-nav.well {
+  @include border-radius(10px);
+  @include single-box-shadow(rgba(0, 0, 0, 0.4), 2px, 2px, 3px);
+
+  background-color: #A7DBD8;
+  border: none;
+
+  .nav-header {
+    @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 1px, 1px);
+
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: none;
+  }
+
+  a {
+    color: #000;
+  }
+}
