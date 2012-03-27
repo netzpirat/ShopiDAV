@@ -36,10 +36,15 @@ body * {
 
 .sidebar-nav.well {
   @include border-radius(10px);
-  @include single-box-shadow(rgba(0, 0, 0, 0.4), 2px, 2px, 3px);
+  @include single-box-shadow(rgba(0, 0, 0, 0.6), 2px, 2px, 6px);
 
-  background-color: #A7DBD8;
+  background-color: #0074CC;
   border: none;
+
+  .nav {
+    padding: 0;
+    margin: 0;
+  }
 
   .nav-header {
     @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 1px, 1px);
@@ -51,6 +56,8 @@ body * {
   }
 
   a {
+    @include single-text-shadow(rgba(255, 255, 255, 0), 0px, 0px, 0px);
+
     color: #000;
   }
 }
