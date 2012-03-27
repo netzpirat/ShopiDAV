@@ -88,7 +88,7 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 0.10.0)
       multi_json (~> 1.0)
-    guard-rspec (0.6.0)
+    guard-rspec (0.7.0)
       guard (>= 0.10.0)
     haml (3.1.4)
     hike (1.2.1)
@@ -97,8 +97,8 @@ GEM
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.6.5)
-    kgio (2.7.3)
+    json (1.6.6)
+    kgio (2.7.4)
     less (2.0.11)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
@@ -111,8 +111,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.7.1)
-    mime-types (1.17.2)
-    multi_json (1.1.0)
+    mime-types (1.18)
+    multi_json (1.2.0)
     nokogiri (1.5.2)
     pg (0.13.2)
     polyglot (0.3.3)
@@ -213,11 +213,12 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    unicorn (4.2.0)
+    unicorn (4.2.1)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
     uuidtools (2.1.2)
+    yajl-ruby (1.1.0)
     yard (0.7.5)
 
 PLATFORMS
@@ -254,4 +255,5 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   unicorn
+  yajl-ruby
   yard
