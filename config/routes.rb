@@ -5,7 +5,7 @@ Shopidav::Application.routes.draw do
   constraints :subdomain => 'www' do
     mount Sidekiq::Web => '/admin/sidekiq'
 
-    match 'features'           => 'page#contact'
+    match 'features'           => 'page#features'
     match 'pricing'            => 'page#pricing'
     match 'webdav-clients'     => 'page#webdav_clients'
     match 'theme-development'  => 'page#theme_development'
