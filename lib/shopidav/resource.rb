@@ -119,28 +119,20 @@ module Shopidav
       NotImplemented
     end
 
-    # Get the Rack session hash
+    # Get the resource cache store
     #
-    # @return [Hash] the session data
+    # @return [Shopidav::Cache] the shop cache
     #
-    def session
-      request.env['rack.session']
+    def cache
+      @cache ||= ::Shopidav::Cache.new(site)
     end
 
-    # Get the {Shop} model for the current shop.
+    # Get the Shopify site url
     #
-    # @return [Shop] the current shop
+    # @return [String] the site url
     #
-    def current_shop
-      session[:current_shop]
-    end
-
-    # Get the API resource for the current shop.
-    #
-    # @return [ShopifyAPI::Shop] the current shop
-    #
-    def current_api_shop
-      session[:current_api_shop]
+    def site
+      @site ||= ::Shop.find_by_name("#{ request.env['HTTP_HOST'].split('.').first() }.myshopify.com").api_url
     end
 
     # Authenticate the WebDAV request. On successful authentication
@@ -151,21 +143,13 @@ module Shopidav
     # @return [Boolean] the authentication status
     #
     def authenticate(username, password)
-      unless current_shop && current_api_shop
-        session[:current_shop] = ::Shop.find_by_name("#{ request.env['HTTP_HOST'].split('.').first() }.myshopify.com")
-        return false unless current_shop
-
-        # TODO: Authenticate the user
-
-        ShopifyAPI::Base.site = current_shop.api_url
-        session[:current_api_shop] = ShopifyAPI::Shop.current
-        return false unless current_api_shop
-
+      if site
+        #TODO: Authenticate the user
+        ShopifyAPI::Base.site = site
+        true
       else
-        ShopifyAPI::Base.site = current_shop.api_url
+        false
       end
-
-      true
     end
 
     # Get the authentication realm

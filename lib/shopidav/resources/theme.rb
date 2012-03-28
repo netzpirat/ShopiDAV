@@ -6,17 +6,19 @@ module Shopidav
     class Theme
       include Shopidav::Folder
 
+      attr_reader :resource, :theme_id
+
       def initialize(resource, theme_id)
         @resource = resource
         @theme_id = theme_id
       end
 
       def theme
-        @theme ||= ShopifyAPI::Theme.find(@theme_id)
+        @theme ||= resource.cache.theme(theme_id)
       end
 
       def assets
-        @assets ||= ShopifyAPI::Asset.find(:all, :params => { :theme_id => @theme_id })
+        @assets ||= resource.cache.assets(theme_id)
       end
 
       def name
@@ -37,8 +39,8 @@ module Shopidav
 
       def children
         @children ||= assets.map { |asset| asset.key.split('/').first }.uniq.map do |bucket|
-          path = "#{ @resource.public_path }/#{ bucket }"
-          Shopidav::Resource.new(path, path, @resource.request, @resource.response, @resource.options)
+          path = "#{ resource.public_path }/#{ bucket }"
+          Shopidav::Resource.new(path, path, resource.request, resource.response, resource.options)
         end
       end
 

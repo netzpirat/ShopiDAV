@@ -6,6 +6,8 @@ module Shopidav
     class Asset
       include Shopidav::File
 
+      attr_reader :resource, :theme_id, :asset_key
+
       def initialize(resource, theme_id, asset_key)
         @resource  = resource
         @theme_id  = theme_id
@@ -13,14 +15,11 @@ module Shopidav
       end
 
       def theme
-        @theme ||= ShopifyAPI::Theme.find(@theme_id)
+        @theme ||= resource.cache.theme(theme_id)
       end
 
       def asset
-        @asset ||= ShopifyAPI::Asset.find(@asset_key, :params => { :theme_id => @theme_id })
-
-      rescue ActiveResource::ResourceNotFound
-        nil
+        @asset ||= resource.cache.asset(theme_id, asset_key)
       end
 
       def exist?

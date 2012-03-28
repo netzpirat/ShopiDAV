@@ -6,6 +6,8 @@ module Shopidav
     class Bucket
       include Shopidav::Folder
 
+      attr_reader :resource, :theme_id, :bucket
+
       def initialize(resource, theme_id, bucket)
         @resource = resource
         @theme_id = theme_id
@@ -13,7 +15,7 @@ module Shopidav
       end
 
       def assets
-        @assets ||= ShopifyAPI::Asset.find(:all, :params => { :theme_id => @theme_id })
+        @assets ||= resource.cache.assets(theme_id)
       end
 
       def name
@@ -34,9 +36,9 @@ module Shopidav
 
       def children
         @children ||= assets.map do |asset|
-          if asset.key.split('/').first == @bucket
-            path = "#{ @resource.public_path }/#{ asset.key.split('/').last }"
-            Shopidav::Resource.new(path, path, @resource.request, @resource.response, @resource.options)
+          if asset.key.split('/').first == bucket
+            path = "#{ resource.public_path }/#{ asset.key.split('/').last }"
+            Shopidav::Resource.new(path, path, resource.request, resource.response, resource.options)
           end
         end.compact
       end

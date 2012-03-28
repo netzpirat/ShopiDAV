@@ -8,12 +8,14 @@ module Shopidav
     class Themes
       include Shopidav::Folder
 
+      attr_reader :resource
+
       def initialize(resource)
         @resource = resource
       end
 
       def themes
-        @themes ||= ShopifyAPI::Theme.find(:all)
+        @themes ||= resource.cache.themes
       end
 
       def name
@@ -34,8 +36,8 @@ module Shopidav
 
       def children
         @children ||= themes.map do |theme|
-          path = "#{ @resource.public_path }/#{ theme.id }-#{ theme.name }"
-          Shopidav::Resource.new(path, path, @resource.request, @resource.response, @resource.options)
+          path = "#{ resource.public_path }/#{ theme.id }-#{ theme.name }"
+          Shopidav::Resource.new(path, path, resource.request, resource.response, resource.options)
         end
       end
 

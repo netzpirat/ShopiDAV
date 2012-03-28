@@ -6,12 +6,14 @@ module Shopidav
     class Shop
       include Shopidav::Folder
 
+      attr_reader :resource
+
       def initialize(resource)
         @resource = resource
       end
 
       def shop
-        @shop ||= @resource.current_api_shop
+        @shop ||= resource.cache.shop
       end
 
       def name
@@ -28,7 +30,7 @@ module Shopidav
 
       def children
         @children ||= [
-          Shopidav::Resource.new('/themes', '/themes', @resource.request, @resource.response, @resource.options)
+          Shopidav::Resource.new('/themes', '/themes', resource.request, resource.response, resource.options)
         ]
       end
     end
