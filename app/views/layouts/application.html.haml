@@ -49,6 +49,13 @@
                   %a{ href: logout_path }
                     %i.icon-off.icon-white
                     Logout
+          - else
+            .nav-collapse
+              %ul.nav.pull-right
+                %li
+                  %a{ href: login_path }
+                    %i.icon-user.icon-white
+                    Login
 
     .container
       .content

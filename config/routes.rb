@@ -17,7 +17,7 @@ Shopidav::Application.routes.draw do
     match 'login/finalize'     => 'login#finalize',     :as => :finalize
     match 'login/logout'       => 'login#logout',       :as => :logout
 
-    root :to                   => 'home#index'
+    root :to                   => 'page#home'
   end
 
   constraints :subdomain => /^((?!www).)+$/ do
