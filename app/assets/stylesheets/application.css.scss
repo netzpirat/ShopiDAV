@@ -44,7 +44,7 @@ body * {
 }
 
 .sidebar-nav.well {
-  @include border-radius(5px);
+  @include border-radius(10px);
   @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.5));
   @include background-image(radial-gradient(50% 50%, #2a2a2a, #1d1d1d));
 
@@ -91,8 +91,8 @@ body * {
   }
 }
 
-p.url {
-  @include border-radius(5px);
+p.blue-box {
+  @include border-radius(10px);
   @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.5));
   @include background-image(radial-gradient(50% 50%, #69D2E7, #A7DBD8));
   @include single-text-shadow(rgba(255, 255, 255, 0.5), 1px, 1px, 1px);
@@ -101,7 +101,7 @@ p.url {
 
   font-size: 24px;
   padding: 20px;
-  margin: 10px 0px;
+  margin: 10px 0px 20px 0px;
 
   word-wrap: break-word;
 
