@@ -63,6 +63,10 @@
                   %i.icon-ok.icon-white.icon-large
                   Information
                 %li= link_to 'Features', '/features'
+                - if current_shop
+                  %li= link_to 'Pricing', '/pricing'
+                - else
+                  %li= link_to 'Pricing', '/pricing'
                 %li= link_to 'WebDAV clients', '/clients'
 
                 %li.nav-header
