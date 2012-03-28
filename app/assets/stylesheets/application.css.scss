@@ -13,6 +13,8 @@
 */
 
 @import 'compass';
+@import 'compass/css3';
+@import 'compass/css3/images';
 
 body * {
   font-family: "myriad-pro", sans-serif;
@@ -29,17 +31,27 @@ body * {
     padding: 10px 20px;
   }
 
-  .nav > li > a > i {
-    margin-top: 2px;
+  .nav > li > a {
+
+    &:hover {
+      color: #69D2E7 !important;
+    }
+
+    > i {
+      margin-top: 2px;
+    }
   }
 }
 
 .sidebar-nav.well {
-  @include border-radius(10px);
-  @include single-box-shadow(rgba(0, 0, 0, 0.6), 2px, 2px, 6px);
+  @include border-radius(5px);
+  @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.5));
+  @include background-image(radial-gradient(45px 45px, #2a2a2a, #1d1d1d));
 
-  background-color: #0074CC;
+  background-color: #2a2a2a;
   border: none;
+
+  margin-top: 30px;
 
   .nav {
     padding: 0;
@@ -53,11 +65,38 @@ body * {
     font-size: 18px;
     font-weight: normal;
     text-transform: none;
+
+    margin-top: 30px;
+    margin-bottom: 5px;
+
+    > i {
+      margin-top: 4px;
+    }
+
+    &:first-child {
+      margin-top: 0px;
+    }
   }
 
   a {
     @include single-text-shadow(rgba(255, 255, 255, 0), 0px, 0px, 0px);
 
-    color: #000;
+    color: #999;
+    margin-left: 5px;
+
+    &:hover {
+      color: #69D2E7;
+      background: transparent;
+    }
   }
+}
+
+footer {
+   @include background-image(radial-gradient(45px 45px, #2a2a2a, #1d1d1d));
+
+   color: #999;
+
+   p {
+    margin: 5px;
+   }
 }
