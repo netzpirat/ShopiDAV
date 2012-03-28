@@ -36,11 +36,11 @@ module Shopidav
 
       def children
         @children ||= assets.map do |asset|
-          if asset.key.split('/').first == bucket
-            path = "#{ resource.public_path }/#{ asset.key.split('/').last }"
+          if %r{^#{ bucket }\/([^\/]+)} === asset.key
+            path = "#{ resource.public_path }/#{ $1 }"
             Shopidav::Resource.new(path, path, resource.request, resource.response, resource.options)
           end
-        end.compact
+        end.compact.uniq_by { |asset| asset.path }
       end
 
     end

@@ -16,10 +16,10 @@ module Shopidav
       when /^\/themes\/(\d+)-[^\/]+$/
         @resource = Shopidav::Resources::Theme.new(self, $1.split('-').first)
 
-      when /^\/themes\/(\d+)-[^\/]+\/([^\/]+)$/
+      when /^\/themes\/(\d+)-[^\/]+\/([^.\n]+)$/
         @resource = Shopidav::Resources::Bucket.new(self, $1.split('-').first, $2)
 
-      when /^\/themes\/(\d+)-[^\/]+\/([^\/]+\/[^\/]+)$/
+      when /^\/themes\/(\d+)-[^\/]+\/((?:[^.\n]+\.)+[^.\n]+)$/
         @resource = Shopidav::Resources::Asset.new(self, $1.split('-').first, $2)
 
       end
