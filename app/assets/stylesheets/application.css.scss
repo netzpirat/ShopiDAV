@@ -46,12 +46,12 @@ body * {
 .sidebar-nav.well {
   @include border-radius(5px);
   @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.5));
-  @include background-image(radial-gradient(45px 45px, #2a2a2a, #1d1d1d));
+  @include background-image(radial-gradient(50% 50%, #2a2a2a, #1d1d1d));
 
   background-color: #2a2a2a;
   border: none;
 
-  margin-top: 30px;
+  margin-top: 37px;
 
   .nav {
     padding: 0;
@@ -59,7 +59,7 @@ body * {
   }
 
   .nav-header {
-    @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 1px, 1px);
+    @include single-text-shadow(rgba(255, 255, 255, 0.5), 1px, 1px, 1px);
 
     color: #fff;
     font-size: 18px;
@@ -89,6 +89,19 @@ body * {
       background: transparent;
     }
   }
+}
+
+p.url {
+  @include border-radius(5px);
+  @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.5));
+  @include background-image(radial-gradient(50% 50%, #69D2E7, #A7DBD8));
+  @include single-text-shadow(rgba(255, 255, 255, 0.5), 1px, 1px, 1px);
+
+  background-color: #69D2E7;
+
+  font-size: 24px;
+  padding: 20px;
+  margin: 10px 0px;
 }
 
 footer {
