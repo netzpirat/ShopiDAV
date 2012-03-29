@@ -19,7 +19,6 @@ module Shopidav
       @url = url
       @uri = URI.parse(url)
 
-      #TODO: Make thread safe
       ShopifyAPI::Base.site = @url
     end
 
@@ -75,8 +74,6 @@ module Shopidav
       get(::ShopifyAPI::Asset, :assets, id, key) { ::ShopifyAPI::Asset.find(key, params: { theme_id: id }) }
     end
 
-    private
-
     # Get a resource by name from the cache and fetch it to the
     # cache if not found.
     #
@@ -87,7 +84,8 @@ module Shopidav
     # @return [Hash] the resource as Hash
     #
     def get(clazz, *names)
-      key = names.unshift(uri.hostname).join(':')
+      keys = name.dup
+      key = keys.unshift(uri.hostname).join(':')
       data = Sidekiq.redis { |r| r.get(key) }
 
       if data
@@ -109,16 +107,28 @@ module Shopidav
 
       else
         Rails.logger.debug "Get resource #{ key } from Shopify API"
-        resource = yield
-
-        Sidekiq.redis do |r|
-          r.set key, resource.to_json
-          r.expire key, 10 * 60
-        end
-
-        resource
+        put(yield, names)
       end
     end
+
+    # Put a resource into the cache
+    #
+    # @param [Object] resource a resource that responds to_json
+    # @param [String, Symbol] name the name of the resource
+    # @return [Object] the resource
+    #
+    def put(resource, *names)
+      key = names.unshift(uri.hostname).join(':')
+      Rails.logger.debug "Put resource #{ key } into the cache"
+
+      Sidekiq.redis do |r|
+        r.set key, resource.to_json
+        r.expire key, 10 * 60
+      end
+
+      resource
+    end
+
 
   end
 end

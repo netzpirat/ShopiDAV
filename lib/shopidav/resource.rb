@@ -3,8 +3,13 @@ require 'dav4rack/resource'
 
 module Shopidav
 
+  # A virtual resource that assembles itself depending on the path
+  # and the Shopify API resource.
+  #
   class Resource < ::DAV4Rack::Resource
 
+    # Factory method to setup the virtual resource.
+    #
     def setup
       case public_path
       when /^\/$/
@@ -22,101 +27,152 @@ module Shopidav
       when /^\/themes\/(\d+)-[^\/]+\/((?:[^.\n]+\.)+[^.\n]+)$/
         @resource = Shopidav::Resources::Asset.new(self, $1.split('-').first, $2)
 
+      else
+        @resource = Shopidav::Resources::Ignore.new(self)
+
       end
     end
 
     # Name of the resource
+    #
+    # @param [String] the name
+    #
     def name
       @resource.name
     end
 
-    # If this is a collection, return the child resources.
+    # Get the resource children
+    #
+    # @return [Array] the children
+    #
     def children
       @resource.children
     end
 
-    # Is this resource a collection?
+    # Is it a collection?
+    #
+    # @return [Boolean] the collection status
+    #
     def collection?
       @resource.collection?
     end
 
-    # Does this resource exist?
+    # Tests if the resource exist
+    #
+    # @return [Boolean] the existence status
+    #
     def exist?
       @resource.exist?
     end
 
-    # Return the creation time.
+    # Get the creation date
+    #
+    # @param [Date] the date
+    #
     def creation_date
       @resource.creation_date
     end
 
-    # Return the time of last modification.
+
+    # Get the last modified date
+    #
+    # @param [Date] the date
+    #
     def last_modified
       @resource.last_modified
     end
 
-    # Return an Etag, an unique hash value for this resource.
+    # Get the etag
+    #
+    # @return [String] the etag
+    #
     def etag
       @resource.etag
     end
 
     # Return the mime type of this resource.
+    #
     def content_type
       @resource.content_type
     end
 
-    # Return the size in bytes for this resource.
+    # Get the file content type
+    #
+    # @return [String] the file content type
+    #
     def content_length
       @resource.content_length
     end
 
     # HTTP GET request.
-    #
     # Write the content of the resource to the response.body.
+    #
+    # @param [Rack::Request] request the HTTP request
+    # @param [Rack::Response] request the HTTP response
+    # @param [Fixnum] the status code
+    #
     def get(request, response)
-      raise NotFound unless exist?
       @resource.get(request, response)
     end
 
     # HTTP PUT request.
-    #
     # Save the content of the request.body.
+    #
+    # @param [Rack::Request] request the HTTP request
+    # @param [Rack::Response] request the HTTP response
+    # @param [Fixnum] the status code
+    #
     def put(request, response)
-      #raise NotFound unless exist?
       @resource.put(request, response)
     end
 
     # HTTP POST request.
     #
-    # Usually forbidden.
+    # @param [Rack::Request] request the HTTP request
+    # @param [Rack::Response] request the HTTP response
+    # @param [Fixnum] the status code
+    #
     def post(request, response)
-      NotImplemented
+      @resource.post(request, response)
     end
 
     # HTTP DELETE request.
-    #
     # Delete this resource.
+    #
+    # @param [Fixnum] the status code
+    #
     def delete
-      NotImplemented
+      @resource.delete
     end
 
     # HTTP COPY request.
-    #
     # Copy this resource to given destination resource.
+    #
+    # @param [Shopidav::Resource] dest the target
+    # @param [Boolean] overwrite should an existing target be overwritten
+    # @param [Fixnum] the status code
+    #
     def copy(dest, overwrite=false)
-      NotImplemented
+      @resource.copy(dest, overwrite)
     end
 
     # HTTP MOVE request.
-    #
     # Move this resource to given destination resource.
+    #
+    # @param [Shopidav::Resource] dest the target
+    # @param [Boolean] overwrite should an existing target be overwritten
+    # @param [Fixnum] the status code
+    #
     def move(dest, overwrite=false)
-      NotImplemented
+      @resource.copy(dest, overwrite)
     end
 
     # Create this resource as collection.
+    #
+    # @param [Fixnum] the status code
+    #
     def make_collection
-      NotImplemented
+      @resource.make_collection
     end
 
     # Get the resource cache store

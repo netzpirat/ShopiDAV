@@ -13,6 +13,7 @@ gem 'slim'
 gem 'sinatra'
 gem 'airbrake'
 gem 'yajl-ruby'
+gem 'unicorn'
 
 group :assets do
   gem 'twitter-bootstrap-rails'
