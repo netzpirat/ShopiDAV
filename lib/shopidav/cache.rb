@@ -84,7 +84,7 @@ module Shopidav
     # @return [Hash] the resource as Hash
     #
     def get(clazz, *names)
-      keys = name.dup
+      keys = names.dup
       key = keys.unshift(uri.hostname).join(':')
       data = Sidekiq.redis { |r| r.get(key) }
 
