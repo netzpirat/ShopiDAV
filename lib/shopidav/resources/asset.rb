@@ -122,7 +122,10 @@ module Shopidav
 
           OK
         else
-          @asset = ::ShopifyAPI::Asset.create({ key: asset_key, value: request.body.read })
+          @asset = ::ShopifyAPI::Asset.new({ key: asset_key, theme_id: theme_id })
+          @asset.value = request.body.read
+          @asset.save
+
           resource.cache.put(@asset, :assets, theme_id, asset_key)
 
           Created
