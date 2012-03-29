@@ -57,7 +57,7 @@ module Shopidav
       # @param [Fixnum] the status code
       #
       def delete
-        Deleted
+        OK
       end
 
       # HTTP COPY request.

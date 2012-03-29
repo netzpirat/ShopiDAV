@@ -136,7 +136,7 @@ module Shopidav
       def delete
         asset.destroy
 
-        Deleted
+        OK
       end
 
     end
